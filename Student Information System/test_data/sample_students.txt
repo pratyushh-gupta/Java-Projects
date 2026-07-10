@@ -1,0 +1,20 @@
+======================================================================
+                 STUDENT SYSTEM TESTING DATA
+======================================================================
+
+[VALID DATA DATASETS]
+----------------------------------------------------------------------
+ID      | Name             | Age  | Grade  | Contact
+----------------------------------------------------------------------
+S101    | Prem Saw         | 20   | 74.21  | 1234567890
+S102    | Pratichi Sarkar  | 22   | 92.74  | 0987654321
+S103    | Pratyush Gupt    | 20   | 85.00  | 5550199232
+
+[INVALID BOUNDARY EDGE TEST CASES]
+----------------------------------------------------------------------
+Test Target | Value  | Expected Behavior Outcome
+----------------------------------------------------------------------
+Underage    | Age: 4 | REJECTED (Fails constraint: System floor is 5)
+Overage     | Age:105| REJECTED (Fails constraint: System ceiling is 100)
+Low Grade   | Grd:-5 | REJECTED (Fails constraint: System floor is 0.0)
+High Grade  | Grd:102| REJECTED (Fails constraint: System ceiling is 100.0)

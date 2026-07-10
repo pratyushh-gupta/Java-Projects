@@ -1,10 +1,15 @@
 import java.util.Scanner;
 
+// main application class that handles  the UI and user inputs.
 public class StudentInformationSystem{
   static Scanner sc = new Scanner(System.in);
   static StudentManager manager = new StudentManager();
 
   public static void main(String[] args) {
+    //Pre-sample data for testing
+    manager.addStudent(new Student("S101", "Prem Saw", 20, 74.21, "1234567890"));
+    manager.addStudent(new Student("S102", "Pratichi Sarkar", 22, 92.74, "0987654321"));
+    
     while(true){
       System.out.println("*** Student Information System ***");
       System.out.println("1. Add New Student");
