@@ -38,6 +38,14 @@ public class GradeManagementSystem{
     String name = sc.nextLine();
     studentNames[studentCount] = name;
 
-    
+    String[] subjects = {"Math", "Science", "English", "History", "Computer"};
+    for(int i=0; i<SUBJECTS; i++){
+      System.out.println(subjects[i] + ": ");
+      double mark = sc.nextDouble();
+      studentMarks[studentCount][i]=mark;
+    }
+    sc.nextLine();
+    studentCount++;
+    System.out.println("Student Added Successfully!");
   }
 }
