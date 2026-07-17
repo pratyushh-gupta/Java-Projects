@@ -29,4 +29,15 @@ public class GradeManagementSystem{
       }
     }
   }
+  public static void addStudent(){
+    if(studentCount == MAX_STUDENTS){
+      System.out.println("Cannot add more students");
+      return;
+    }
+    System.out.print("Enter Student Name: ");
+    String name = sc.nextLine();
+    studentNames[studentCount] = name;
+
+    
+  }
 }
