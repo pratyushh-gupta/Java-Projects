@@ -11,7 +11,8 @@ public class GradeManagementSystem{
     while(true){
       System.out.println("\n==== GRADE MANAGEMENT SYSTEM ====");
       System.out.println("1. Add Student");
-      System.out.println("2. Exit");
+      System.out.println("2. View Student");
+      System.out.println("3. Exit");
 
       System.out.println("Enter choice: ");
       int choice = sc.nextInt();
@@ -21,7 +22,10 @@ public class GradeManagementSystem{
         case 1:
           addStudent();
           break;
-        case 2:
+        case 2: 
+          viewStudent();
+          break;
+        case 3:
           System.out.println("Thank You!");
           System.exit(0);
         default:
@@ -29,6 +33,7 @@ public class GradeManagementSystem{
       }
     }
   }
+
   public static void addStudent(){
     if(studentCount == MAX_STUDENTS){
       System.out.println("Cannot add more students");
@@ -47,5 +52,22 @@ public class GradeManagementSystem{
     sc.nextLine();
     studentCount++;
     System.out.println("Student Added Successfully!");
+  }
+  
+  public static void viewStudent(){
+    if(studentCount==0){
+      System.out.println("No students found!");
+      return;
+    }
+    System.out.println("========== ALL STUDENTS ==========");
+    System.out.println("Name      Math  Science  English  History  Computer");
+
+    for(int i=0; i<studentCount; i++){
+      System.out.print(studentNames[i] + "\t");
+      for(int j=0; j<SUBJECTS; j++){
+        System.out.print(studentMarks[i][j] + "\t");
+      }
+      System.out.println();
+    }
   }
 }
