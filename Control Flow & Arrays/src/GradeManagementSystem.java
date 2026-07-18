@@ -12,7 +12,8 @@ public class GradeManagementSystem{
       System.out.println("\n==== GRADE MANAGEMENT SYSTEM ====");
       System.out.println("1. Add Student");
       System.out.println("2. View Student");
-      System.out.println("3. Exit");
+      System.out.println("3. Calculate Average and Grade");
+      System.out.println("4. Exit");
 
       System.out.println("Enter choice: ");
       int choice = sc.nextInt();
@@ -25,7 +26,10 @@ public class GradeManagementSystem{
         case 2: 
           viewStudent();
           break;
-        case 3:
+        case 3: 
+          displayAverage();
+          break;
+        case 4:
           System.out.println("Thank You!");
           System.exit(0);
         default:
@@ -45,7 +49,7 @@ public class GradeManagementSystem{
 
     String[] subjects = {"Math", "Science", "English", "History", "Computer"};
     for(int i=0; i<SUBJECTS; i++){
-      System.out.println(subjects[i] + ": ");
+      System.out.print(subjects[i] + ": ");
       double mark = sc.nextDouble();
       studentMarks[studentCount][i]=mark;
     }
@@ -63,11 +67,58 @@ public class GradeManagementSystem{
     System.out.println("Name      Math  Science  English  History  Computer");
 
     for(int i=0; i<studentCount; i++){
-      System.out.print(studentNames[i] + "\t");
+      System.out.printf(studentNames[i] + "\t");
       for(int j=0; j<SUBJECTS; j++){
         System.out.print(studentMarks[i][j] + "\t");
       }
-      System.out.println();
+      System.out.println(); 
+    }
+  }
+
+  public static double calculateAverage(int studentIndex){
+    double sum = 0;
+    for(int i=0; i<SUBJECTS; i++){
+      sum += studentMarks[studentIndex][i];
+    }
+    double average = sum/SUBJECTS;
+    return average;
+  }
+
+  public static String getGrade(double average){
+    if(average>=90){
+      return "A+";
+    }
+    else if(average >= 80){
+      return "A";
+    }
+    else if(average >= 70){
+      return "B";
+    }
+    else if(average >= 60){
+      return "C";
+    }
+    else if(average >= 50){
+      return "D";
+    }
+    else
+      return "F";
+  }
+
+  public static void displayAverage(){
+    if(studentCount==0){
+      System.out.println("No students found!");
+      return;
+    }
+
+    System.out.println("========== STUDENT AVERAGES ==========");
+    for(int i=0; i<studentCount; i++){
+      double average = calculateAverage(i);
+      String grade = getGrade(average);
+
+      System.out.println("Student Name : " + studentNames[i]);
+      System.out.printf("Average      : %.2f%n", average);
+      System.out.println("Grade        : " + grade);
+      System.out.println("--------------------");
     }
   }
 }
