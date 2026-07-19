@@ -13,7 +13,8 @@ public class GradeManagementSystem{
       System.out.println("1. Add Student");
       System.out.println("2. View Student");
       System.out.println("3. Calculate Average and Grade");
-      System.out.println("4. Exit");
+      System.out.println("4. Search Student");
+      System.out.println("5. Exit");
 
       System.out.println("Enter choice: ");
       int choice = sc.nextInt();
@@ -29,7 +30,10 @@ public class GradeManagementSystem{
         case 3: 
           displayAverage();
           break;
-        case 4:
+        case 4: 
+          searchStudent();
+          break;
+        case 5:
           System.out.println("Thank You!");
           System.exit(0);
         default:
@@ -119,6 +123,42 @@ public class GradeManagementSystem{
       System.out.printf("Average      : %.2f%n", average);
       System.out.println("Grade        : " + grade);
       System.out.println("--------------------");
+    }
+  }
+
+  public static void searchStudent(){
+    if(studentCount == 0){
+      System.out.println("No student found!");
+      return;
+    }
+
+    System.out.println("Enter Student Name: ");
+    String searchName = sc.nextLine();
+
+    boolean found = false;
+
+    for(int i=0; i<studentCount; i++){
+      if(studentNames[i].equalsIgnoreCase(searchName)){
+        found = true;
+        System.out.println("\n===== STUDENT DETAILS =====");
+        System.out.println("Name : " + studentNames[i]);
+        System.out.print("Marks : ");
+        for(int j=0; j<SUBJECTS; j++){
+          System.out.print(studentMarks[i][j] + "\t");
+        }
+
+        System.out.println();
+
+        double average = calculateAverage(i);
+        String grade = getGrade(average);
+
+        System.out.printf("Average : %.2f%n", average);
+        System.out.println("Grade : " + grade);
+        break;
+      }
+    }
+    if(!found){
+      System.out.println("Student not found!");
     }
   }
 }
