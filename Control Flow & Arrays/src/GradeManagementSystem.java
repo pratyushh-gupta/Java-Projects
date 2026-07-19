@@ -14,7 +14,8 @@ public class GradeManagementSystem{
       System.out.println("2. View Student");
       System.out.println("3. Calculate Average and Grade");
       System.out.println("4. Search Student");
-      System.out.println("5. Exit");
+      System.out.println("5. Find Top Performer");
+      System.out.println("6. Exit");
 
       System.out.println("Enter choice: ");
       int choice = sc.nextInt();
@@ -33,7 +34,10 @@ public class GradeManagementSystem{
         case 4: 
           searchStudent();
           break;
-        case 5:
+        case 5: 
+          findTopPerformer();
+          break;
+        case 6:
           System.out.println("Thank You!");
           System.exit(0);
         default:
@@ -160,5 +164,29 @@ public class GradeManagementSystem{
     if(!found){
       System.out.println("Student not found!");
     }
+  }
+
+  public static void findTopPerformer(){
+    if(studentCount == 0){
+      System.out.println("No students found!");
+      return;
+    }
+
+    int topIndex = 0;
+    double highestAverage = calculateAverage(0);
+
+    for(int i=1; i<studentCount; i++){
+      double currentAverage = calculateAverage(i);
+
+      if(currentAverage > highestAverage){
+        highestAverage = currentAverage;
+        topIndex = i;
+      }
+    }
+
+    System.out.println("\n ===== TOP PERFORMER =====");
+    System.out.println("Name    : " + studentNames[topIndex]);
+    System.out.printf("Average : %.2f%n", highestAverage);
+    System.out.println("Grade   : " + getGrade(highestAverage));
   }
 }
