@@ -19,8 +19,7 @@ public class GradeManagementSystem{
       System.out.println("7. Exit");
 
       System.out.println("Enter choice: ");
-      int choice = sc.nextInt();
-      sc.nextLine();
+      int choice = getValidChoice();
 
       switch(choice){
         case 1:
@@ -62,8 +61,7 @@ public class GradeManagementSystem{
     String[] subjects = {"Math", "Science", "English", "History", "Computer"};
     for(int i=0; i<SUBJECTS; i++){
       System.out.print(subjects[i] + ": ");
-      double mark = sc.nextDouble();
-      studentMarks[studentCount][i]=mark;
+      studentMarks[studentCount][i]=getValidMark();
     }
     sc.nextLine();
     studentCount++;
@@ -264,5 +262,43 @@ public class GradeManagementSystem{
     System.out.println("C  : " + c);
     System.out.println("D  : " + d);
     System.out.println("F  : " + f);
+  }
+
+  public static int getValidChoice() {
+    while(true){
+        try{
+            int choice = sc.nextInt();
+            sc.nextLine();
+
+            if(choice>=1 && choice<=7) {
+                return choice;
+            }else {
+                System.out.print("Enter a choice between 1 and 7: ");
+            }
+
+        }catch (Exception e){
+            System.out.print("Invalid input! Enter a number: ");
+            sc.nextLine();
+        }
+    }
+  }
+
+  public static double getValidMark() {
+    while(true){
+        try{
+            double mark = sc.nextDouble();
+            sc.nextLine();
+
+            if(mark >= 0 && mark <= 100){
+                return mark;
+            } else {
+                System.out.print("Marks must be between 0 and 100. Enter again: ");
+            }
+
+        } catch (Exception e){
+            System.out.print("Invalid input! Enter numeric marks: ");
+            sc.nextLine();
+        }
+    }
   }
 }
