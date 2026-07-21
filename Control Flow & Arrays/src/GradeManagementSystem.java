@@ -15,7 +15,8 @@ public class GradeManagementSystem{
       System.out.println("3. Calculate Average and Grade");
       System.out.println("4. Search Student");
       System.out.println("5. Find Top Performer");
-      System.out.println("6. Exit");
+      System.out.println("6. Generate Performance Report");
+      System.out.println("7. Exit");
 
       System.out.println("Enter choice: ");
       int choice = sc.nextInt();
@@ -37,7 +38,10 @@ public class GradeManagementSystem{
         case 5: 
           findTopPerformer();
           break;
-        case 6:
+        case 6: 
+          generateReport();
+          break;
+        case 7:
           System.out.println("Thank You!");
           System.exit(0);
         default:
@@ -188,5 +192,77 @@ public class GradeManagementSystem{
     System.out.println("Name    : " + studentNames[topIndex]);
     System.out.printf("Average : %.2f%n", highestAverage);
     System.out.println("Grade   : " + getGrade(highestAverage));
+  }
+
+  public static void generateReport(){
+    if(studentCount==0){
+      System.out.println("No students found!");
+      return;
+    }
+
+    System.out.println("\n========== PERFORMANCE REPORT ==========");
+    System.out.println("Total Students : " + studentCount);
+
+    String[] subjects = {"Math", "Science", "English", "History", "Computer"};
+    System.out.println("\n----- SUBJECT AVERAGES -----");
+    for(int i=0; i<SUBJECTS; i++){
+      double sum=0;
+      for(int j=0; j<studentCount; j++){
+        sum+=studentMarks[j][i];
+      }
+      double average = sum/studentCount;
+      System.out.printf("%-10s : %.2f%n", subjects[i], average);
+    }
+
+    int topIndex=0;
+    double highestAverage = calculateAverage(0);
+    for(int i=1; i<studentCount; i++){
+      double currentAverage = calculateAverage(i);
+      if(currentAverage > highestAverage){
+        highestAverage = currentAverage;
+        topIndex = i;
+      }
+    }
+    System.out.println("\n----- TOP PERFORMER -----");
+    System.out.println("Name    : " + studentNames[topIndex]);
+    System.out.printf("Average : %.2f%n", highestAverage);
+    System.out.println("Grade   : " + getGrade(highestAverage));
+
+    int aPlus=0;
+    int a=0;
+    int b=0;
+    int c=0;
+    int d=0;
+    int f=0;
+    for(int i=0; i<studentCount; i++){
+      String grade = getGrade(calculateAverage(i));
+
+      switch (grade) {
+        case "A+":
+          aPlus++;
+          break;
+        case "A":
+          a++;
+          break;
+        case "B":
+          b++;
+          break;
+        case "C":
+          c++;
+          break;
+        case "D":
+          d++;
+          break;
+        default:
+          f++;
+      }
+    }
+    System.out.println("\n----- GRADE DISTRIBUTION -----");
+    System.out.println("A+ : " + aPlus);
+    System.out.println("A  : " + a);
+    System.out.println("B  : " + b);
+    System.out.println("C  : " + c);
+    System.out.println("D  : " + d);
+    System.out.println("F  : " + f);
   }
 }
