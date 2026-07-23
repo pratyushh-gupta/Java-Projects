@@ -1,0 +1,46 @@
+================ SAMPLE STUDENT DATA ================
+
+Student 1
+Name : Pratyush
+
+Marks
+Math      : 90
+Science   : 95
+English   : 80
+History   : 85
+Computer  : 100
+
+Average : 90.00
+Grade   : A+
+
+-----------------------------------------------------
+
+Student 2
+Name : Prem
+
+Marks
+Math      : 70
+Science   : 80
+English   : 65
+History   : 90
+Computer  : 75
+
+Average : 76.00
+Grade   : B
+
+-----------------------------------------------------
+
+Student 3
+Name : Aman
+
+Marks
+Math      : 88
+Science   : 79
+English   : 92
+History   : 81
+Computer  : 85
+
+Average : 85.00
+Grade   : A
+
+=====================================================
